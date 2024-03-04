@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"format": "prettier --write \"app/**/*.{js,jsx,ts,tsx,css,scss,html,json}\" && prettier --write \"components/**/*.{js,jsx,ts,tsx,css,scss,html,json}\""
+		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,html,json}\""
 	},
 	"dependencies": {
 		"@ant-design/icons": "^5.3.1",
