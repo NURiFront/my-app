@@ -1,10 +1,9 @@
 'use client';
 import scss from './Header.module.scss';
 import { useEffect, useState } from 'react';
-import { useRouter,usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
-import logo from '@/components/assets/trello-logo.svg';
-// import Avatar from 'react-avatar';
+import logo from '@/assets/trello-logo.svg';
 import { Button, Dropdown, Input, MenuProps, Space } from 'antd';
 import { IconArrowDown, IconSearch, IconUser } from '@tabler/icons-react';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
@@ -29,35 +28,40 @@ const links = [
 const Header = () => {
 	const [user, setUser] = useState<User | null>();
 	const [index, setIndex] = useState('');
-	const router = useRouter()
+	const router = useRouter();
 	const pathname = usePathname();
 
 	const { data } = useAppSelector((state) => state.auth);
 	const dispatch = useAppDispatch();
 
 	const getFindUser = () => {
-		const isAuth = localStorage.getItem('isAuth');
-		const findUser = data.find((item) => item._id === Number(isAuth));
+		if (typeof window !== 'undefined') {
+			const isAuth = localStorage.getItem('isAuth');
+			const findUser = data.find((item) => item._id === Number(isAuth));
 
-		if (isAuth) {
-			setUser(findUser);
-		} else {
-			localStorage.removeItem('isAuth');
+			if (isAuth) {
+				setUser(findUser);
+			} else {
+				localStorage.removeItem('isAuth');
+			}
 		}
 	};
 
 	const handleLogout = () => {
-		localStorage.removeItem('isAuth');
-		setUser(null);
-		router.push('/login');
+		if (typeof window !== 'undefined') {
+			localStorage.removeItem('isAuth');
+			setUser(null);
+			router.push('/login');
+		}
 	};
 
 	useEffect(() => {
 		dispatch(getUser());
-	}, [pathname]);
+	}, [pathname, dispatch]);
 
 	useEffect(() => {
 		getFindUser();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname, data]);
 
 	const [input, setInput] = useState('');
@@ -127,7 +131,6 @@ const Header = () => {
 									style={{
 										borderRadius: 50
 									}}
-									
 								>
 									<Image
 										src={user.photo}
@@ -143,13 +146,10 @@ const Header = () => {
 							) : (
 								<Link href="/login">Login</Link>
 							)}
-
-							{/* <Avatar name="NURi Toktogulova" round size="50" color="#0055D3" /> */}
 						</div>
 					</div>
 				</div>
 			</div>
-			{/* <InputTest onChange={(e) => setInput(e.target.value)} /> */}
 		</header>
 	);
 };

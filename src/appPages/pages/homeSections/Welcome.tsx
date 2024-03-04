@@ -11,17 +11,20 @@ const Welcome: FC = () => {
 	const dispatch = useAppDispatch();
 
 	const getUserInfo = () => {
-		const isAuth = localStorage.getItem('isAuth');
-		const userFind = user.find((item) => item._id === Number(isAuth));
-		setUserInfo(userFind!);
+		if (typeof window !== 'undefined') {
+			const isAuth = localStorage.getItem('isAuth');
+			const userFind = user.find((item) => item._id === Number(isAuth));
+			setUserInfo(userFind!);
+		}
 	};
 
 	useEffect(() => {
 		dispatch(getUser());
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		getUserInfo();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 
 	return (

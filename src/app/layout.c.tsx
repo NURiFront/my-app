@@ -2,7 +2,7 @@
 import React, { FC, ReactNode } from 'react';
 import { ReduxProvider } from '@/redux/provider';
 import { SessionProvider } from '@/providers/SessionProvider';
-import Layout from '@/components/layout/Layout';
+import Layout from '@/appPages/components/layout/Layout';
 
 interface LayoutRootType {
 	children: ReactNode;

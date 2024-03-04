@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import Column from './dashboardSections/Columns';
+import Columns from './dashboardSections/Columns';
 
 const DashboardPage: FC = () => {
 	return (
 		<>
-			<Column />
+			<Columns />
 		</>
 	);
 };

@@ -10,7 +10,7 @@ import { useAppDispatch } from '@/redux/store';
 const Registration = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const router = useRouter()
+	const router = useRouter();
 	const [name, setName] = useState('');
 	const [photo, setPhoto] = useState('');
 
@@ -35,7 +35,7 @@ const Registration = () => {
 			console.log('post not Fount');
 		}
 	};
-	
+
 	return (
 		<div className={scss.Registration}>
 			<div className="container">
