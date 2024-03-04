@@ -1,6 +1,6 @@
 'use client';
 import React, { FC, ReactNode } from 'react';
-import { ReduxProvider } from '@/redux/provider';
+import { ReduxProvider } from '@/providers/ReduxProvider';
 import { SessionProvider } from '@/providers/SessionProvider';
 import Layout from '@/appPages/components/layout/Layout';
 
